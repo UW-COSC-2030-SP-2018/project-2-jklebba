@@ -1,1 +1,2 @@
-"# project-2-jklebba" 
+"# project-2-jklebba"   
+Sorting and Hashing
