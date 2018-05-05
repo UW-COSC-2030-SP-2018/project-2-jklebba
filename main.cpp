@@ -287,6 +287,11 @@ unsigned int APHash(const std::string& str)
 	return hash;
 }
 
+
+//BloomFilter is a structure that allows you to very efficiently check if you
+//previously added an input.
+//it may return false positives, but never false negatives
+// got help with bloomfilter from here: http://blog.michaelschmatz.com/2016/04/11/how-to-write-a-bloom-filter-cpp/
 struct BloomFilter
 {
 	//member variables
