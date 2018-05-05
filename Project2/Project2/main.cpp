@@ -15,6 +15,7 @@ using namespace std;
 //----------------------------------QUICKSORT----------------------------------------
 //This function uses the quicksort algorithm to sort a vector of ints----------------------
 // vec1 is the vector to be sorted
+// found help for this algorithem from: https://rosettacode.org/wiki/Sorting_algorithms/Quicksort
 vector<int> QuickSort(vector<int>& vec1) {
 	vector<int> less, equal, greater;
 	int holder;
@@ -77,6 +78,7 @@ vector<int> QuickSort(vector<int>& vec1) {
 // target is the value to search for
 // left is the leftmost index of the vector sub-segment, 
 // right is the rightmost index of the vector sub-segment
+// found help for this algorithm from: https://www.geeksforgeeks.org/binary-search/
 int BinarySearch(const vector<int>& vec1, int target, int left, int right)
 {
 	//if subsection has atleast 1 element
@@ -105,6 +107,85 @@ int BinarySearch(const vector<int>& vec1, int target, int left, int right)
 	return -1;
 	}
 
+void merge(vector<int>& vec1, int left, int mid, int right)
+{
+	// Now we need to merge the halves
+	int i, j, k;
+	int n1 = mid - left + 1;
+	int n2 = right - mid;
+
+	// create arrays for the right and left sections
+	//int leftArr[n1], rightArr[n2];
+
+	int * leftArr = new int[n1];
+	int * rightArr = new int[n2];
+
+	// populate vectors with appropriate values
+	for (i = 0; i < n1; i++)
+	{
+		leftArr[i] = vec1[left + i];
+	}
+
+	for (j = 0; j < n2; j++)
+	{
+		rightArr[j] = vec1[mid + 1 + j];
+	}
+
+	// set intitial indexes of vectors for the merge
+	i = 0;
+	j = 0;
+	k = 0;
+
+	while (i < n1 && j < n2)
+	{
+		if (leftArr[i] <= rightArr[j])
+		{
+			vec1[k] = leftArr[i];
+			i++;
+		}
+		else
+		{
+			vec1[k] = rightArr[j];
+		}
+		k++;
+	}
+
+	// copy remaining elements if there are any
+	while (i < n1)
+	{
+		vec1[k] = leftArr[i];
+		i++;
+		k++;
+	}
+
+	while (j < n2)
+	{
+		vec1[k] = rightArr[j];
+		j++;
+		k++;
+	}
+
+	delete[] leftArr;
+	delete[] rightArr;
+}
+
+// https://www.geeksforgeeks.org/merge-sort/
+void MergeSort(vector<int>& vec1, int left, int right)
+{
+	if (left < right)
+	{
+		// get index of a middle element
+		int mid = left + (right - left) / 2;
+
+		// Sort first and second halves
+		MergeSort(vec1, left, mid);
+		MergeSort(vec1, (mid + 1), right);
+
+		merge(vec1, left, mid, right);
+		
+	}
+}
+
 
 
 
@@ -123,12 +204,16 @@ int main()
 {
 	vector<int> v = { 14, 4, 9, 5, 8, 8, 0, -7};
 
-	
+	print(v);
 
-	QuickSort(v);
+	//QuickSort(v);
+	MergeSort(v,0,(v.size()-1));
+
+
 	print(v);
 
 	cout << endl << BinarySearch(v, -7, 0, (v.size() - 1)) << endl;
+
 
 	return 0;
 }
