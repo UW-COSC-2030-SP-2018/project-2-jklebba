@@ -299,6 +299,7 @@ struct BloomFilter
 	vector<bool> bits;
 
 	//constructor
+	// input = integer for the size of bloomfilter
 	BloomFilter(unsigned int sizeOf)
 		:bits(sizeOf),
 		size(sizeOf)
