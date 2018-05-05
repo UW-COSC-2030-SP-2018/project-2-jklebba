@@ -12,6 +12,6 @@ In this project I implemented and tested the following functionalities:
    
 I have provided links in the comments to the places I got help from. 
   
-Also special thanks to Dr. Borowczak for assisting me with this projec.  
+Also special thanks to Dr. Borowczak for assisting me with this project.  
 
 
